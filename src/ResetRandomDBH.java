@@ -1,10 +1,13 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -21,7 +24,19 @@ public class ResetRandomDBH extends Application{
 
     @Override
     public void start(Stage primaryStage) {
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.TOP_LEFT);
+        Button resetBT = new Button("Reset");
+        hBox.getChildren().add(resetBT);
 
+        resetBT.setOnAction((ActionEvent e) -> {
+            Integer[] list = new Integer[52];
+            for(int i = 0; i < 52; i++)
+                list[i] = i + 1;
+
+            ArrayList<Integer> deck = new ArrayList<>(Arrays.asList(list));
+            Collections.shuffle(deck);
+        });
 
 
         Integer[] list = new Integer[52];
