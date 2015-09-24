@@ -4,10 +4,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -21,26 +20,19 @@ import java.util.Collections;
  * in a window
  */
 public class ResetRandomDBH extends Application{
+    Button resetBT = new Button("Reset");
 
     @Override
     public void start(Stage primaryStage) {
-        HBox hBox = new HBox();
-        hBox.setAlignment(Pos.TOP_LEFT);
-        Button resetBT = new Button("Reset");
-        hBox.getChildren().add(resetBT);
-
         resetBT.setOnAction((ActionEvent e) -> {
-            Integer[] list = new Integer[52];
-            for(int i = 0; i < 52; i++)
-                list[i] = i + 1;
-
-            ArrayList<Integer> deck = new ArrayList<>(Arrays.asList(list));
-            Collections.shuffle(deck);
+            randomCards(primaryStage);
         });
+        randomCards(primaryStage);
+    }
 
-
+    public void randomCards(Stage primaryStage) {
         Integer[] list = new Integer[52];
-        for(int i = 0; i < 52; i++)
+        for (int i = 0; i < 52; i++)
             list[i] = i + 1;
 
         ArrayList<Integer> deck = new ArrayList<>(Arrays.asList(list));
@@ -48,8 +40,8 @@ public class ResetRandomDBH extends Application{
 
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.BASELINE_LEFT);
-        gridPane.setPadding(new Insets(5, 5, 5, 5));
-        gridPane.setHgap(5);
+        gridPane.setPadding(new Insets(25, 25, 25, 25));
+        gridPane.setHgap(35);
         gridPane.setVgap(5);
 
         ImageView viewCard1 = new ImageView("card/" + deck.get(1) + ".png");
@@ -63,10 +55,11 @@ public class ResetRandomDBH extends Application{
         gridPane.add(viewCard3, 2, 0);
         gridPane.add(viewCard4, 3, 0);
         gridPane.add(viewCard5, 4, 0);
+        gridPane.add(resetBT, 2, 1);
 
-        Scene scene = new Scene(gridPane, 400, 200);
+        Scene scene = new Scene(gridPane, 600, 200);
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
+
 }
