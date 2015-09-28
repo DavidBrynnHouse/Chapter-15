@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -14,15 +15,20 @@ public class ClickPointsDBH extends Application {
     public void start(Stage primaryStage) throws Exception {
         Pane pane = new Pane();
         pane.setOnMouseClicked((MouseEvent e) -> {
-            double color1 = Math.random();
-            double color2 = Math.random();
-            double color3= Math.random();
-            Color color = new Color(color1, color2, color3, color1);
-            pane.getChildren().add(new Circle(e.getSceneX(), e.getSceneY(), 15, color));
+            if(e.getButton().equals(MouseButton.PRIMARY)) {
+                double color1 = Math.random();
+                double color2 = Math.random();
+                double color3 = Math.random();
+                Color color = new Color(color1, color2, color3, color1);
+                pane.getChildren().add(new Circle(e.getSceneX(), e.getSceneY(), 15, color));
+            }
+            else if(e.getButton().equals(MouseButton.SECONDARY)){
+                pane.getChildren().add(new Circle(e.getSceneX(), e.getSceneY(), 20, Color.WHITE));
+            }
         });
-
         Scene scene = new Scene(pane, 1920, 1080);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 }
