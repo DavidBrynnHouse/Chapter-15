@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class ClickPointsDBH extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         Pane pane = new Pane();
         pane.setOnMouseClicked((MouseEvent e) -> {
             if(e.getButton().equals(MouseButton.PRIMARY)) {
@@ -23,7 +23,7 @@ public class ClickPointsDBH extends Application {
                 pane.getChildren().add(new Circle(e.getSceneX(), e.getSceneY(), 15, color));
             }
             else if(e.getButton().equals(MouseButton.SECONDARY)){
-                pane.getChildren().add(new Circle(e.getSceneX(), e.getSceneY(), 20, Color.WHITE));
+                pane.getChildren().add(new Circle(e.getSceneX(), e.getSceneY(), 25, Color.WHITE));
             }
         });
         Scene scene = new Scene(pane, 1920, 1080);

@@ -24,15 +24,14 @@ public class ResetRandomDBH extends Application{
 
     @Override
     public void start(Stage primaryStage) {
-        resetBT.setOnAction((ActionEvent e) -> {
-            randomCards(primaryStage);
-        });
-        //randomCards(primaryStage);
+        viewBacks(primaryStage);
+
+        resetBT.setOnAction((ActionEvent e) -> randomCards(primaryStage));
     }
 
     public void randomCards(Stage primaryStage) {
-        Integer[] list = new Integer[52];
-        for (int i = 0; i < 52; i++)
+        Integer[] list = new Integer[54];
+        for (int i = 0; i < 54; i++)
             list[i] = i + 1;
 
         ArrayList<Integer> deck = new ArrayList<>(Arrays.asList(list));
@@ -61,5 +60,28 @@ public class ResetRandomDBH extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+   public void viewBacks(Stage primaryStage) {
+        GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.BASELINE_LEFT);
+        gridPane.setPadding(new Insets(25, 25, 25, 25));
+        gridPane.setHgap(35);
+        gridPane.setVgap(5);
 
+        ImageView viewBack1 = new ImageView("card/b2fv.png");
+        ImageView viewBack2 = new ImageView("card/b1fv.png");
+        ImageView viewBack3 = new ImageView("card/b2fv.png");
+        ImageView viewBack4 = new ImageView("card/b1fv.png");
+        ImageView viewBack5 = new ImageView("card/b2fv.png");
+
+        gridPane.add(viewBack1, 0, 0);
+        gridPane.add(viewBack2, 1, 0);
+        gridPane.add(viewBack3, 2, 0);
+        gridPane.add(viewBack4, 3, 0);
+        gridPane.add(viewBack5, 4, 0);
+        gridPane.add(resetBT, 2, 1);
+
+        Scene scene = new Scene(gridPane, 600, 200);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }
